@@ -22,3 +22,8 @@ class Countries(BaseModel):
 
 
 BaseModel.set_session(session)
+
+
+Countries.create(continent_id=5).add()
+
+Countries().fill(contient_id=45)
