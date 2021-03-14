@@ -1,12 +1,15 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from sqlalchemy_mixins import AllFeaturesMixin, TimestampsMixin, ReprMixin
+from sqlalchemy_mixins import AllFeaturesMixin, ReprMixin, TimestampsMixin
 
-from .database import base, session, engine
+from .database import base, engine, session
 
 
 class BaseModel(base, AllFeaturesMixin, TimestampsMixin, ReprMixin):
     __abstract__ = True
+
+    def __init__(self, *args, **kwargs):
+        pass
 
 
 class Continent(BaseModel):

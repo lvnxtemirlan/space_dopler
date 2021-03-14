@@ -28,14 +28,10 @@ class Nowgoal:
 
         response = self.scraper.scrape_base_page()
         data = Utils.convert_regex_to_dict(data=response.text)
+
         for continent_id, data in data["data"].items():
             for country_id, i in enumerate(data):
-                countries.append(
-                    Countries(
-                        continent_id=continent_id+1,
-                        name=i[2]
-                    )
-                )
+                countries.append(Countries(continent_id=continent_id + 1, name=i[2]))
 
         return countries
 

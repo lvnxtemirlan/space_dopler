@@ -1,9 +1,3 @@
-import os
-from pathlib import Path
+from decouple import config
 
-from dotenv import load_dotenv
-
-env_path = Path(".") / ".env"
-load_dotenv(env_path)
-
-DB_LINK = os.getenv("DB_LINK")
+DB_LINK = config("DB_LINK", cast=str)

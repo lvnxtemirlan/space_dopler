@@ -2,7 +2,7 @@ from pathlib import Path
 
 import invoke
 
-PACKAGE = "core api scraper"
+PACKAGE = "core api scraper celery_tasks"
 REQUIRED_COVERAGE = 90
 BASE_DIR = Path(__file__).resolve().parent
 
