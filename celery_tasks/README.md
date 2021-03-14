@@ -1,6 +1,6 @@
 # Celery tasks
 ```
-Package for handling tasks in async mode.
+Package for handling tasks in async manner
 ```
 
 ## Usage of tasks
