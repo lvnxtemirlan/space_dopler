@@ -1,29 +1,32 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
-from sqlalchemy_mixins import AllFeaturesMixin
+from sqlalchemy.orm import relationship
+from sqlalchemy_mixins import AllFeaturesMixin, TimestampsMixin, ReprMixin
 
-from .database import base, session
+from .database import base, session, engine
 
 
-class BaseModel(base, AllFeaturesMixin):
+class BaseModel(base, AllFeaturesMixin, TimestampsMixin, ReprMixin):
     __abstract__ = True
 
 
-class Continents(BaseModel):
+class Continent(BaseModel):
     __tablename__ = "continents"
+
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(length=255))
 
+    countries = relationship("Country", back_populates="continent")
 
-class Countries(BaseModel):
+
+class Country(BaseModel):
     __tablename__ = "countries"
+
     id = Column(Integer, primary_key=True, autoincrement=True)
     continent_id = Column(Integer, ForeignKey("continents.id"))
     name = Column(String(length=255))
 
+    continent = relationship("Continent", back_populates="countries")
 
+
+base.metadata.create_all(engine)
 BaseModel.set_session(session)
-
-
-Countries.create(continent_id=5).add()
-
-Countries().fill(contient_id=45)
